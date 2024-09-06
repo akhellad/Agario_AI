@@ -5,7 +5,7 @@ from agar_gym_env import AgarEnv  # Assurez-vous que c'est le bon chemin vers vo
 import matplotlib.pyplot as plt
 
 # Charger l'environnement avec le mode de rendu
-env = AgarEnv(render_mode="human")  # Ajoutez render_mode="human" pour voir le rendu
+env = AgarEnv(render_mode="human")
 
 # Environnement vectorisé
 vec_env = DummyVecEnv([lambda: env])
@@ -25,10 +25,9 @@ for _ in range(100):
     action, _states = model.predict(obs, deterministic=True)  
     obs, reward, done, info = vec_env.step(action)
 
-    # Afficher l'environnement
     vec_env.render()
     # Si l'agent atteint une condition de fin, réinitialiser l'environnement
-    if done[0]:  # Note: 'done' est une liste dans un DummyVecEnv
+    if done[0]:
         print("L'agent a atteint une condition de fin.")
         obs = vec_env.reset()
 
